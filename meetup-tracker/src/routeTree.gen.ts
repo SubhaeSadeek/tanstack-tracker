@@ -8,39 +8,89 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { createFileRoute } from '@tanstack/react-router'
 
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as OrgActivitiesHakathonRouteImport } from './routes/org/activities/hakathon'
+
+const OrgActivitiesPostsLazyRouteImport = createFileRoute(
+  '/org/activities/posts',
+)()
+
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrgActivitiesPostsLazyRoute = OrgActivitiesPostsLazyRouteImport.update({
+  id: '/org/activities/posts',
+  path: '/org/activities/posts',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() =>
+  import('./routes/org/activities/posts.lazy').then((d) => d.Route),
+)
+const OrgActivitiesHakathonRoute = OrgActivitiesHakathonRouteImport.update({
+  id: '/org/activities/hakathon',
+  path: '/org/activities/hakathon',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/org/activities/hakathon': typeof OrgActivitiesHakathonRoute
+  '/org/activities/posts': typeof OrgActivitiesPostsLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/org/activities/hakathon': typeof OrgActivitiesHakathonRoute
+  '/org/activities/posts': typeof OrgActivitiesPostsLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/org/activities/hakathon': typeof OrgActivitiesHakathonRoute
+  '/org/activities/posts': typeof OrgActivitiesPostsLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/about' | '/org/activities/hakathon' | '/org/activities/posts'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about' | '/org/activities/hakathon' | '/org/activities/posts'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/org/activities/hakathon'
+    | '/org/activities/posts'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  OrgActivitiesHakathonRoute: typeof OrgActivitiesHakathonRoute
+  OrgActivitiesPostsLazyRoute: typeof OrgActivitiesPostsLazyRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +98,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/org/activities/posts': {
+      id: '/org/activities/posts'
+      path: '/org/activities/posts'
+      fullPath: '/org/activities/posts'
+      preLoaderRoute: typeof OrgActivitiesPostsLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/org/activities/hakathon': {
+      id: '/org/activities/hakathon'
+      path: '/org/activities/hakathon'
+      fullPath: '/org/activities/hakathon'
+      preLoaderRoute: typeof OrgActivitiesHakathonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  OrgActivitiesHakathonRoute: OrgActivitiesHakathonRoute,
+  OrgActivitiesPostsLazyRoute: OrgActivitiesPostsLazyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
