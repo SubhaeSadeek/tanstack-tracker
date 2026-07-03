@@ -1,9 +1,13 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
 
 export const Route = createLazyFileRoute('/org/activities/posts')({
-  component: RouteComponent,
+  component: PostComponent,
 })
 
-function RouteComponent() {
-  return <div>Hello "/org/activities/posts"!</div>
+function PostComponent() {
+  return (
+    <div>
+      <h1 className="text-4xl font-black">Post</h1>
+    </div>
+  )
 }

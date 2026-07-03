@@ -31,6 +31,8 @@ const Header = () => {
         >
           LinkedIn
         </a>
+        <Link to="/org/activities/meetups">Meetups</Link>
+        <Link to="/org/activities/posts">Post</Link>
         <Link to="/about">About</Link>
       </nav>
     </header>

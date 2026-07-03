@@ -1,0 +1,54 @@
+{
+	"events": [
+		{
+			"id": "1",
+			"title": "React & Next.js Frontend Summit",
+			"date": "2026-07-10",
+			"venue": "Moscone Center West",
+			"description": "Deep dive into the latest React 19 features, Server Components, and Next.js 15 routing strategies with industry experts.",
+			"attendees": 350,
+			"city": "San Francisco",
+			"tech": "JavaScript / React"
+		},
+		{
+			"id": "2",
+			"title": "AI & Machine Learning Innovators",
+			"date": "2026-07-18",
+			"venue": "Javits Center",
+			"description": "Exploring large language model fine-tuning, RAG architectures, and ethical AI deployment in enterprise environments.",
+			"attendees": 500,
+			"city": "New York",
+			"tech": "Artificial Intelligence"
+		},
+		{
+			"id": "3",
+			"title": "Rust Systems Programming Meetup",
+			"date": "2026-08-05",
+			"venue": "Soho House Berlin",
+			"description": "Networking and technical talks focused on memory safety, async Rust, and building high-performance microservices.",
+			"attendees": 120,
+			"city": "Berlin",
+			"tech": "Rust"
+		},
+		{
+			"id": "4",
+			"title": "Cloud Native & DevOps Days",
+			"date": "2026-08-12",
+			"venue": "Seattle Convention Center",
+			"description": "Best practices for Kubernetes scaling, GitOps workflows, and infrastructure as code using modern Terraform modules.",
+			"attendees": 420,
+			"city": "Seattle",
+			"tech": "Cloud / DevOps"
+		},
+		{
+			"id": "5",
+			"title": "Cybersecurity & Zero Trust Summit",
+			"date": "2026-08-20",
+			"venue": "ExCeL London",
+			"description": "Workshops on implementing zero-trust architecture, threat hunting, and securing cloud-native applications against modern exploits.",
+			"attendees": 275,
+			"city": "London",
+			"tech": "Cybersecurity"
+		}
+	]
+}
